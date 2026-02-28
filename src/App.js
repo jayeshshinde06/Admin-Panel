@@ -1,24 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
-
+// import logo from './logo.svg';
+// import './App.css';
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import Dashboard from "./Pages/Dashboard";
+import SignIn from "./Pages/Sign-in";
+import SignUp from "./Pages/SignUp";
+import ManageDoctor from "./Pages/ManageDoctor";
+import ManageUser from "./Pages/ManageUser";
+import MangeAppointment from "./Pages/ManageAppointment";
+import ManageFeedback from "./Pages/ManageFeedback";
+import ManagePayment from "./Pages/ManagePayment";
+import ManageState from "./Pages/ManageState";
+import ManageCity from "./Pages/ManageCity";
+import ManageArea from "./Pages/ManageArea";
+import Error from "./Common/Errorpage";
+import ManageSpecialization from "./Pages/ManageSpecialization";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+      <Routes>
+        <Route path="" element={<Dashboard/>}/>
+        <Route path="/managestate" element={<ManageState />}></Route>
+        <Route path="/viewcity" element={<ManageCity />}></Route>
+        <Route path="/viewarea" element={<ManageArea />}></Route>
+        <Route path="/managedoctor" element={<ManageDoctor props="Manage Doctor"/>}/>
+        <Route path="/manageuser" element={<ManageUser />} />
+        <Route path="/manageappointment" element={<MangeAppointment />}/>
+        <Route path="/managefeedback" element={<ManageFeedback />} />
+        <Route path="/managepayment" element={<ManagePayment />} />
+        <Route path="/managespecialization" element={<ManageSpecialization />}></Route>
+        <Route path="/signin" element={<SignIn/>}/>
+        <Route path="/signup" element={<SignUp/>}/>
+        <Route path="/*" element={<Error />} />
+      </Routes>
+      </BrowserRouter>
+
+    </>
   );
 }
 
