@@ -12205,7 +12205,8 @@ div.dt-container .dt-paging .dt-paging-button:hover:hover, div.dt-container .dt-
 }
 
 .form-label {
-  font-size: 0.875rem;
+  width: 150px;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--text-secondary-light);
 }

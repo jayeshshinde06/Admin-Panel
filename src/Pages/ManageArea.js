@@ -52,18 +52,32 @@ function Content2(){
         <>
            <div className="card">
   <div className="card-header d-flex flex-wrap align-items-center justify-content-between gap-3">
-    <div className="d-flex flex-wrap align-items-center gap-3">
-      
-     
-    </div>
-    {/* <div className="d-flex flex-wrap align-items-center gap-3">
-      <button type="button" href="/viewcity" class="btn rounded-pill btn-outline-success-600 radius-8 px-20 py-11 d-flex align-items-center gap-2"> 
-       
-      <Link to="/viewcity">  View Cities </Link>
-        
-        <iconify-icon icon="mingcute:square-arrow-right-line" class="text-xl"></iconify-icon></button>
-    </div> */}
-  </div>
+          <div className="d-flex align-items-center gap-3">
+            
+              <label className="form-label">Add Area</label>
+                <input
+                  type="text"
+                  name="#0"
+                  className="form-control"
+                  placeholder="Enter Area Name"
+                />
+            <label className="form-label">Pincode</label>
+                <input
+                  type="text"
+                  name="#0"
+                  className="form-control"
+                  placeholder="Enter Pincode"
+                />
+          </div>
+          <div className="d-flex flex-wrap align-items-center gap-3">
+            <button
+              type="button"
+              class="btn rounded-pill btn-primary-100 text-primary-600 radius-8 px-20 py-11"
+            >
+              Add Area
+            </button>
+          </div>
+        </div>
   <div className="card-body">
     <table className="table bordered-table mb-0">
       <thead>
@@ -113,9 +127,9 @@ function Content2(){
             {/* <a href="javascript:void(0)" className="w-32-px h-32-px bg-primary-light text-primary-600 rounded-circle d-inline-flex align-items-center justify-content-center">
               <iconify-icon icon="iconamoon:eye-light" />
             </a> */}
-            <a href="javascript:void(0)" className="w-32-px h-32-px bg-success-focus text-success-main rounded-circle d-inline-flex align-items-center justify-content-center">
+            {/* <a href="javascript:void(0)" className="w-32-px h-32-px bg-success-focus text-success-main rounded-circle d-inline-flex align-items-center justify-content-center">
               <iconify-icon icon="lucide:edit" />
-            </a>
+            </a> */}
             <a href="javascript:void(0)" className="w-32-px h-32-px bg-danger-focus text-danger-main rounded-circle d-inline-flex align-items-center justify-content-center">
               <iconify-icon icon="mingcute:delete-2-line" />
             </a>

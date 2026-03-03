@@ -91,7 +91,7 @@ export default function Sidebar() {
             icon="solar:dollar-outline"
             className="menu-icon"
           />
-          <span>Manage Payments</span>
+          <span>View Payments</span>
         </Link>
       </li>
 

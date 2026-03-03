@@ -1,6 +1,7 @@
 import Headder from "../Common/Headder";
 import Sidebar from "../Common/Sidebar";
 import Footer from "../Common/Footer";
+import { Link } from "react-router-dom";
 
 export default function Dashboard(){
     return(
@@ -26,15 +27,15 @@ function Content(){
               <h6 className="fw-semibold mb-0">Dashboard</h6>
               <ul className="d-flex align-items-center gap-2">
                 <li className="fw-medium">
-                  <a
-                    href="/"
+                  <Link
+                    to="/"
                     className="d-flex align-items-center gap-1 hover-text-primary">
                     <iconify-icon
                       icon="solar:home-smile-angle-outline"
                       className="icon text-lg"
                     />
                     Dashboard
-                  </a>
+                  </Link>
                 </li>
                 <li>-</li>
                 <li className="fw-medium">AI</li>

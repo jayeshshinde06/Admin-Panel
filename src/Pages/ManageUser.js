@@ -1,6 +1,7 @@
 import Headder from "../Common/Headder";
 import Sidebar from "../Common/Sidebar";
 import Footer from "../Common/Footer";
+import { Link } from "react-router-dom";
 
 
 const data = [{
@@ -123,8 +124,8 @@ function Content() {
           <h6 className="fw-semibold mb-0">User Table</h6>
           <ul className="d-flex align-items-center gap-2">
             <li className="fw-medium">
-              <a
-                href="/"
+              <Link
+                to="/"
                 className="d-flex align-items-center gap-1 hover-text-primary"
               >
                 <iconify-icon
@@ -132,7 +133,7 @@ function Content() {
                   className="icon text-lg"
                 />
                 Dashboard
-              </a>
+              </Link>
             </li>
             <li>-</li>
             <li className="fw-medium">Manage User</li>
@@ -161,12 +162,7 @@ function Content2() {
           >
             <thead>
               <tr>
-                <th scope="col">
-                  <div className="form-check style-check d-flex align-items-center">
-                    <input className="form-check-input" type="checkbox" />
-                    <label className="form-check-label">S.L</label>
-                  </div>
-                </th>
+                    
                 <th scope="col">User Id</th>
                 <th scope="col">Location Id</th>
                 <th scope="col">Name</th>
@@ -180,12 +176,7 @@ function Content2() {
             <tbody>
               {data.map((pr,index)=>
                 <tr>
-                <td>
-                  <div className="form-check style-check d-flex align-items-center">
-                    <input className="form-check-input" type="checkbox" />
-                    <label className="form-check-label">{index+1}</label>
-                  </div>
-                </td>
+                  
                 <td>
                   <a href="javascript:void(0)" className="text-primary-600">
                     {index+1}
@@ -250,6 +241,26 @@ function Content2() {
 
             </tbody>
           </table>
+          <div className="d-flex flex-wrap align-items-center justify-content-between gap-2 mt-24">
+      <span>Showing 1 to 10 of 12 entries</span>
+      <ul className="pagination d-flex flex-wrap align-items-center gap-2 justify-content-center">
+        <li className="page-item">
+          <a className="page-link text-secondary-light fw-medium radius-4 border-0 px-10 py-10 d-flex align-items-center justify-content-center h-32-px w-32-px bg-base" href="javascript:void(0)"><iconify-icon icon="ep:d-arrow-left" className="text-xl" /></a>
+        </li>
+        <li className="page-item">
+          <a className="page-link bg-primary-600 text-white fw-medium radius-4 border-0 px-10 py-10 d-flex align-items-center justify-content-center h-32-px w-32-px" href="javascript:void(0)">1</a>
+        </li>
+        <li className="page-item">
+          <a className="page-link bg-primary-50 text-secondary-light fw-medium radius-4 border-0 px-10 py-10 d-flex align-items-center justify-content-center h-32-px w-32-px" href="javascript:void(0)">2</a>
+        </li>
+        <li className="page-item">
+          <a className="page-link bg-primary-50 text-secondary-light fw-medium radius-4 border-0 px-10 py-10 d-flex align-items-center justify-content-center h-32-px w-32-px" href="javascript:void(0)">3</a>
+        </li>
+        <li className="page-item">
+          <a className="page-link text-secondary-light fw-medium radius-4 border-0 px-10 py-10 d-flex align-items-center justify-content-center h-32-px w-32-px bg-base" href="javascript:void(0)"> <iconify-icon icon="ep:d-arrow-right" className="text-xl" /> </a>
+        </li>
+      </ul>
+    </div>
         </div>
       </div>
     </>

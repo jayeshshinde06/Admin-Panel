@@ -1,6 +1,7 @@
 import Headder from "../Common/Headder";
 import Sidebar from "../Common/Sidebar";
 import Footer from "../Common/Footer";
+import { Link } from "react-router-dom";
 
 
 const doctordata = [{
@@ -116,8 +117,8 @@ function Content() {
           <h6 className="fw-semibold mb-0">Manage Paymentt Table</h6>
           <ul className="d-flex align-items-center gap-2">
             <li className="fw-medium">
-              <a
-                href="/"
+              <Link
+                to="/"
                 className="d-flex align-items-center gap-1 hover-text-primary"
               >
                 <iconify-icon
@@ -125,7 +126,7 @@ function Content() {
                   className="icon text-lg"
                 />
                 Dashboard
-              </a>
+              </Link>
             </li>
             <li>-</li>
             <li className="fw-medium">Manage Payment</li>
@@ -151,12 +152,7 @@ function Content2() {
           >
             <thead>
               <tr>
-                <th scope="col">
-                  <div className="form-check style-check d-flex align-items-center">
-                    <input className="form-check-input" type="checkbox" />
-                    <label className="form-check-label">S.L</label>
-                  </div>
-                </th>
+                    
                 <th scope="col">Payment Id</th>
                 <th scope="col">Appointment Id</th>
                 <th scope="col">Transaction Id</th>
@@ -164,18 +160,12 @@ function Content2() {
                 <th scope="col">Date</th>
                 <th scope="col">Method No</th>
                 <th scope="col">Status</th>
-                <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
               {doctordata.map((pr,index)=>
                 <tr>
-                <td>
-                  <div className="form-check style-check d-flex align-items-center">
-                    <input className="form-check-input" type="checkbox" />
-                    <label className="form-check-label">{index+1}</label>
-                  </div>
-                </td>
+                  
                 <td>
                   <a href="javascript:void(0)" className="text-primary-600">
                     {index+1}
@@ -214,31 +204,44 @@ function Content2() {
                   </div>
                 </td>
                  
-                <td>
+                  <td>
+                  <div className="d-flex align-items-center">
+                    <span class="bg-success-focus text-success-main px-24 py-4 rounded-pill fw-medium text-sm">Completed</span>
+                  </div>
+                </td>
+                {/* <td>
                   <div className="d-flex align-items-center">
                     <h6 className="text-md mb-0 fw-medium flex-grow-1">
                       {pr.qual}
                     </h6>
                   </div>
-                </td>
-                <td>
-                  <a
-                    href="javascript:void(0)"
-                    className="w-32-px h-32-px bg-success-focus text-success-main rounded-circle d-inline-flex align-items-center justify-content-center"
-                  >
-                    <iconify-icon icon="lucide:edit" />
-                  </a>
-                  <a
-                    href="javascript:void(0)"
-                    className="w-32-px h-32-px bg-danger-focus text-danger-main rounded-circle d-inline-flex align-items-center justify-content-center"
-                  >
-                    <iconify-icon icon="mingcute:delete-2-line" />
-                  </a>
-                </td>
+                </td> */}
+                
               </tr>
               )}
             </tbody>
           </table>
+          {/*  */}
+          <div className="d-flex flex-wrap align-items-center justify-content-between gap-2 mt-24">
+      <span>Showing 1 to 10 of 12 entries</span>
+      <ul className="pagination d-flex flex-wrap align-items-center gap-2 justify-content-center">
+        <li className="page-item">
+          <a className="page-link text-secondary-light fw-medium radius-4 border-0 px-10 py-10 d-flex align-items-center justify-content-center h-32-px w-32-px bg-base" href="javascript:void(0)"><iconify-icon icon="ep:d-arrow-left" className="text-xl" /></a>
+        </li>
+        <li className="page-item">
+          <a className="page-link bg-primary-600 text-white fw-medium radius-4 border-0 px-10 py-10 d-flex align-items-center justify-content-center h-32-px w-32-px" href="javascript:void(0)">1</a>
+        </li>
+        <li className="page-item">
+          <a className="page-link bg-primary-50 text-secondary-light fw-medium radius-4 border-0 px-10 py-10 d-flex align-items-center justify-content-center h-32-px w-32-px" href="javascript:void(0)">2</a>
+        </li>
+        <li className="page-item">
+          <a className="page-link bg-primary-50 text-secondary-light fw-medium radius-4 border-0 px-10 py-10 d-flex align-items-center justify-content-center h-32-px w-32-px" href="javascript:void(0)">3</a>
+        </li>
+        <li className="page-item">
+          <a className="page-link text-secondary-light fw-medium radius-4 border-0 px-10 py-10 d-flex align-items-center justify-content-center h-32-px w-32-px bg-base" href="javascript:void(0)"> <iconify-icon icon="ep:d-arrow-right" className="text-xl" /> </a>
+        </li>
+      </ul>
+    </div>
         </div>
       </div>
     </>

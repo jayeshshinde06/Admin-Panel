@@ -26,8 +26,8 @@ export function Content(){
           <h6 className="fw-semibold mb-0">City Table</h6>
           <ul className="d-flex align-items-center gap-2">
             <li className="fw-medium">
-              <a
-                href="/managestate"
+              <Link
+                to="/managestate"
                 className="d-flex align-items-center gap-1 hover-text-primary"
               >
                 <iconify-icon
@@ -35,7 +35,7 @@ export function Content(){
                   className="icon text-lg"
                 />
                 Manage State
-              </a>
+              </Link>
             </li>
             <li>-</li>
             <li className="fw-medium">View City</li>
@@ -52,22 +52,26 @@ function Content2(){
         <>
            <div className="card">
   <div className="card-header d-flex flex-wrap align-items-center justify-content-between gap-3">
-    <div className="d-flex flex-wrap align-items-center gap-3">
-      
-     
-    </div>
-    <div className="d-flex flex-wrap align-items-center gap-3">
-     {/* <button type="button" href="/viewcity" class="btn rounded-pill btn-outline-success-600 radius-8 px-20 py-11 d-flex align-items-center gap-2"> 
-       
-      <Link to="/viewarea">  View Areas </Link>
-        
-        <iconify-icon icon="mingcute:square-arrow-right-line" class="text-xl"></iconify-icon></button>
-      */}
-     <button type="button" class="btn rounded-pill btn-primary-100 text-primary-600 radius-8 px-20 py-11">
-      <Link to="/viewcity">  Add City </Link>
-        </button>
-     </div>
-  </div>
+          <div className="d-flex align-items-center">
+            
+              <label className="form-label">Add City</label>
+                <input
+                  type="text"
+                  name="#0"
+                  className="form-control"
+                  placeholder="Enter City Name"
+                />
+            
+          </div>
+          <div className="d-flex flex-wrap align-items-center gap-3">
+            <button
+              type="button"
+              class="btn rounded-pill btn-primary-100 text-primary-600 radius-8 px-20 py-11"
+            >
+               Add City 
+            </button>
+          </div>
+        </div>
   <div className="card-body">
     <table className="table bordered-table mb-0">
       <thead>
@@ -111,9 +115,7 @@ function Content2(){
             {/* <a href="javascript:void(0)" className="w-32-px h-32-px bg-primary-light text-primary-600 rounded-circle d-inline-flex align-items-center justify-content-center">
               <iconify-icon icon="iconamoon:eye-light" />
             </a> */}
-            <a href="javascript:void(0)" className="w-32-px h-32-px bg-success-focus text-success-main rounded-circle d-inline-flex align-items-center justify-content-center">
-              <iconify-icon icon="lucide:edit" />
-            </a>
+            
             <a href="javascript:void(0)" className="w-32-px h-32-px bg-danger-focus text-danger-main rounded-circle d-inline-flex align-items-center justify-content-center">
               <iconify-icon icon="mingcute:delete-2-line" />
             </a>
