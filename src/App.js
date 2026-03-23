@@ -21,8 +21,8 @@ function App() {
       <Routes>
         <Route path="" element={<Dashboard/>}/>
         <Route path="/managestate" element={<ManageState />}></Route>
-        <Route path="/viewcity" element={<ManageCity />}></Route>
-        <Route path="/viewarea" element={<ManageArea />}></Route>
+        <Route path="/viewcity/:id" element={<ManageCity />}></Route>
+        <Route path="/viewarea/:id" element={<ManageArea />}></Route>
         <Route path="/managedoctor" element={<ManageDoctor props="Manage Doctor"/>}/>
         <Route path="/manageuser" element={<ManageUser />} />
         <Route path="/manageappointment" element={<MangeAppointment />}/>

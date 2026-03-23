@@ -2,89 +2,8 @@ import Headder from "../Common/Headder";
 import Sidebar from "../Common/Sidebar";
 import Footer from "../Common/Footer";
 import { Link } from "react-router-dom";
-
-
-const doctordata = [{
-                id:1,
-                lid: 101,
-                na: "Jayesh",
-                email: "jay@gmail.com",
-                cono:    "5",
-                qual: "MBBS",
-              },
-              {
-                id: 2,
-                lid: 102,
-                na: "Amit",
-                email: "amit@gmail.com",
-                cono:    "5",
-                qual: "MD",
-              },
-              {
-                id: 2,
-                lid: 102,
-                na: "Amit",
-                email: "amit@gmail.com",
-                cono:    "5",
-                qual: "MD",
-              },
-              {
-                id: 2,
-                lid: 102,
-                na: "Amit",
-                email: "amit@gmail.com",
-                cono:    "5",
-                qual: "MD",
-              },
-              {
-                id: 2,
-                lid: 102,
-                na: "Amit",
-                email: "amit@gmail.com",
-                cono:    "5",
-                qual: "MD",
-              },
-              {
-                id: 2,
-                lid: 102,
-                na: "Amit",
-                email: "amit@gmail.com",
-                cono:    "5",
-                qual: "MD",
-              },
-              {
-                id: 2,
-                lid: 102,
-                na: "Amit",
-                email: "amit@gmail.com",
-                cono:    "5",
-                qual: "MD",
-              },
-              {
-                id: 2,
-                lid: 102,
-                na: "Amit",
-                email: "amit@gmail.com",
-                cono:    "5",
-                qual: "MD",
-              },
-              {
-                id: 2,
-                lid: 102,
-                na: "Amit",
-                email: "amit@gmail.com",
-                cono:    "5",
-                qual: "MD",
-              },
-              {
-                id: 2,
-                lid: 102,
-                na: "Amit",
-                email: "amit@gmail.com",
-                cono:    "5",
-                qual: "MD",
-              }
-            ]
+import { useEffect, useState } from "react";
+import axios from "axios";
 export default function ManageFeedback(pro) {
   return (
     <>
@@ -100,11 +19,12 @@ export default function ManageFeedback(pro) {
   );
 }
 function Content() {
+ 
   return (
     <>
       <div className="dashboard-main-body">
         <div className="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-24">
-          <h6 className="fw-semibold mb-0">Feedback Table</h6>
+          <h6 className="fw-semibold mb-0">Inquire Table</h6>
           <ul className="d-flex align-items-center gap-2">
             <li className="fw-medium">
               <Link
@@ -128,6 +48,23 @@ function Content() {
   );
 }         
 function Content2() {
+   // Get Api
+
+  const [ inquire, setInquire] = useState([]);
+
+  async function fetchInquires(){
+    try {
+      const response = await axios.get("http://localhost:8000/getinquires");
+      console.log(response.data.data);
+
+      setInquire(response.data.data)
+      
+    } catch (error) {
+      console.log(error);
+      
+    }
+  }
+  useEffect(()=>{fetchInquires();},[])
   return (
     <>
       <div className="card basic-data-table">
@@ -143,55 +80,55 @@ function Content2() {
             <thead>
               <tr>
                     
-                <th scope="col">Feedback Id</th>
-                <th scope="col">User Id</th>
-                <th scope="col">Doctor Id</th>
-                <th scope="col">Description</th>
-                <th scope="col">Rating </th>
+                <th scope="col">Inquire Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Message</th>
               </tr>
             </thead>
             <tbody>
-              {doctordata.map((pr,index)=>
-                <tr>
+              {inquire.map((iq, index)=>(
+                <tr key={index}>
                   
                 <td>
-                  <a href="javascript:void(0)" className="text-primary-600">
-                    {index+1}
-                  </a>
-                </td>
-                <td>
-                  <a href="javascript:void(0)" className="text-primary-600">
-                    {index+101}
-                  </a>
+                  <span className="text-primary-600">
+                    {iq._id}
+                  </span>
                 </td>
                 <td>
                   <div className="d-flex align-items-center">
-                    {/* <img src="assets/images/user-list/user-list1.png" alt className="flex-shrink-0 me-12 radius-8" /> */}
+                  <span>
+                    {iq.fname}
+                  </span>
+                  </div>
+                </td>
+                <td>
+                  <div className="d-flex align-items-center">
                     <h6 className="text-md mb-0 fw-medium flex-grow-1">
-                      {pr.na}
+                      {iq.email}
                     </h6>
                   </div>
                 </td>
                 <td>
                   <div className="d-flex align-items-center">
                     <h6 className="text-md mb-0 fw-medium flex-grow-1 text-wrap">
-                      {pr.email}
+                      {iq.phone}
                     </h6>
                   </div>
                 </td>
                 <td>
                   <div className="d-flex align-items-center">
                     <h6 className="text-md mb-0 fw-medium flex-grow-1">
-                      {pr.cono}<span>⭐</span>
+                      {iq.message}
                     </h6>
                   </div>
                 </td>
-               
               </tr>
-              )}
+              ))}
             </tbody>
           </table>
-          {/*  */}
+          
           <div className="d-flex flex-wrap align-items-center justify-content-between gap-2 mt-24">
       <span>Showing 1 to 10 of 12 entries</span>
       <ul className="pagination d-flex flex-wrap align-items-center gap-2 justify-content-center">

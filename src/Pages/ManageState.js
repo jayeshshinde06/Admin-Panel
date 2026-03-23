@@ -2,8 +2,12 @@ import { Link } from "react-router-dom";
 import Footer from "../Common/Footer";
 import Headder from "../Common/Headder";
 import Sidebar from "../Common/Sidebar";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function ManageState() {
+
+  
   return (
     <>
       <div>
@@ -48,29 +52,80 @@ function Content() {
 }
 
 function Content2() {
+  // Add Api
+  const [formData, setFormData] = useState({
+    name : "",
+  });
+
+  const handleChange = (e) =>{
+    const {name, value} = e.target;
+    console.log(e);
+
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  }
+
+  const handleAdd = async (e) => {
+    e.preventDefault();
+    try {
+    const response = await axios.post("http://localhost:8000/addstate", formData);
+    console.log(response);
+      fetchState();
+      setFormData({ name : ""})
+    } catch (error) {
+      console.log(error);
+    }  
+  }
+// GET Data
+  const [state, setState] = useState([]);
+
+  async function fetchState() {
+    try {
+      const response = await axios.get("http://localhost:8000/getstate")
+      console.log(response.data.data);
+      setState(response.data.data);
+      
+    } catch (error) {
+      console.log(error);
+      
+    }
+    
+  }
+  useEffect(()=>{
+    fetchState();
+  }, [])
+
+  
   return (
     <>
       <div className="card">
         <div className="card-header d-flex flex-wrap align-items-center justify-content-between gap-3">
+         
           <div className="d-flex align-items-center">
             
               <label className="form-label">Add State</label>
                 <input
                   type="text"
-                  name="#0"
+                  name="name"
                   className="form-control"
                   placeholder="Enter State Name"
+                  value={formData.name}
+                  onChange={handleChange}
                 />
-            
           </div>
           <div className="d-flex flex-wrap align-items-center gap-3">
             <button
               type="button"
-              class="btn rounded-pill btn-primary-100 text-primary-600 radius-8 px-20 py-11"
+              className="btn rounded-pill btn-primary-100 text-primary-600 radius-8 px-20 py-11"
+              onClick={handleAdd}
             >
               Add State
             </button>
           </div>
+            
+
         </div>
         <div className="card-body">
           <table className="table bordered-table mb-0">
@@ -83,27 +138,26 @@ function Content2() {
               </tr>
             </thead>
             <tbody>
-              <tr>
+             { state.map((st, index)=>(
+
+             
+              <tr key={index}>
                 <td>
                   <a href="javascript:void(0)" className="text-primary-600">
-                    #526534
+                    
+                    {index+1}
                   </a>
                 </td>
                 <td>
                   <div className="d-flex align-items-center">
-                    {/* <img src="assets/images/user-list/user-list1.png" alt className="flex-shrink-0 me-12 radius-8" /> */}
                     <h6 className="text-md mb-0 fw-medium flex-grow-1">
-                      Gujarat
+                      {st.name}
                     </h6>
                   </div>
                 </td>
-                {/* <td>25 Jan 2024</td>
-          <td>$200.00</td> */}
-                {/* <td> <span className="bg-success-focus text-success-main px-24 py-4 rounded-pill fw-medium text-sm">Paid</span> </td> */}
+                
                 <td className="d-flex align-items-center gap-12  flex-wrap">
-                  {/* <a href="javascript:void(0)" className="w-32-px h-32-px bg-primary-light text-primary-600 rounded-circle d-inline-flex align-items-center justify-content-center">
-              <iconify-icon icon="iconamoon:eye-light" />
-            </a> */}
+                  
                   
                   <a
                     href="javascript:void(0)"
@@ -114,16 +168,18 @@ function Content2() {
                   <button
                     type="button"
                     href="/viewcity"
-                    class="btn rounded-pill btn-outline-success-600 radius-8 px-20 py-11 d-flex align-items-center gap-2"
+                    className="btn rounded-pill btn-outline-success-600 radius-8 px-20 py-11 d-flex align-items-center gap-2"
                   >
-                    <Link to="/viewcity"> View Cities </Link>
+                    <Link to={`/viewcity/${st._id}`}> View Cities </Link>
                     <iconify-icon
                       icon="mingcute:square-arrow-right-line"
-                      class="text-xl"
+                      className="text-xl"
                     ></iconify-icon>
                   </button>
                 </td>
+              
               </tr>
+              ))}
             </tbody>
           </table>
           <div className="d-flex flex-wrap align-items-center justify-content-between gap-2 mt-24">
