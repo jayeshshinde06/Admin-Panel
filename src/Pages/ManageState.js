@@ -73,6 +73,7 @@ function Content2() {
     const response = await axios.post("http://localhost:8000/addstate", formData);
     console.log(response);
       fetchState();
+      
       setFormData({ name : ""})
     } catch (error) {
       console.log(error);

@@ -69,6 +69,7 @@ function Content2() {
     const { name, value } = e.target;
     console.log(e);
     setFormData({
+      // Seperator operator
       ...formData,
       [name]: value,
     });
@@ -82,6 +83,7 @@ function Content2() {
         formData
       );
       console.log(response);
+      alert("City Added Happily!")
       fetchCity();
       setFormData({ name : ""})
     } catch (error) {
