@@ -1,100 +1,11 @@
 import Headder from "../Common/Headder";
 import Sidebar from "../Common/Sidebar";
 import Footer from "../Common/Footer";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 
 
-const doctordata = [{
-                id:1,
-                lid: 101,
-                lid: 101,
-                na: "Jayesh",
-                email: "jay@gmail.com",
-                cono: "989898989",
-                qual: "MBBS",
-              },
-              {
-                id: 2,
-                lid: 101,
-                lid: 102,
-                na: "Amit",
-                email: "amit@gmail.com",
-                cono: "9876543210",
-                qual: "MD",
-              },
-              {
-                id: 2,
-                lid: 101,
-                lid: 102,
-                na: "Amit",
-                email: "amit@gmail.com",
-                cono: "9876543210",
-                qual: "MD",
-              },
-              {
-                id: 2,
-                lid: 101,
-                lid: 102,
-                na: "Amit",
-                email: "amit@gmail.com",
-                cono: "9876543210",
-                qual: "MD",
-              },
-              {
-                id: 2,
-                lid: 101,
-                lid: 102,
-                na: "Amit",
-                email: "amit@gmail.com",
-                cono: "9876543210",
-                qual: "MD",
-              },
-              {
-                id: 2,
-                lid: 101,
-                lid: 102,
-                na: "Amit",
-                email: "amit@gmail.com",
-                cono: "9876543210",
-                qual: "MD",
-              },
-              {
-                id: 2,
-                lid: 101,
-                lid: 102,
-                na: "Amit",
-                email: "amit@gmail.com",
-                cono: "9876543210",
-                qual: "MD",
-              },
-              {
-                id: 2,
-                lid: 101,
-                lid: 102,
-                na: "Amit",
-                email: "amit@gmail.com",
-                cono: "9876543210",
-                qual: "MD",
-              },
-              {
-                id: 2,
-                lid: 101,
-                lid: 102,
-                na: "Amit",
-                email: "amit@gmail.com",
-                cono: "9876543210",
-                qual: "MD",
-              },
-              {
-                id: 2,
-                lid: 101,
-                lid: 102,
-                na: "Amit",
-                email: "amit@gmail.com",
-                cono: "9876543210",
-                qual: "MD",
-              }
-            ]
 export default function ManagePayment(pro) {
   return (
     <>
@@ -138,6 +49,23 @@ function Content() {
   );
 }         
 function Content2() {
+   const [ pay, setPay] = useState([]);
+
+  async function fetchPayment() {
+    try {
+      const response = await axios.get("http://localhost:8000/getappointmentforadmin");
+      console.log(response.data.data);
+      setPay(response.data.data);
+      
+    } catch (error) {
+      console.log("ManageDoctor.js", error);
+      
+    }
+  }
+
+  useEffect(()=>{
+    fetchPayment();
+},[])
   return (
     <>
       <div className="card basic-data-table">
@@ -158,48 +86,48 @@ function Content2() {
                 <th scope="col">Transaction Id</th>
                 <th scope="col">Amount</th>
                 <th scope="col">Date</th>
-                <th scope="col">Method No</th>
+                <th scope="col">Method</th>
                 <th scope="col">Status</th>
               </tr>
             </thead>
             <tbody>
-              {doctordata.map((pr,index)=>
+              {pay.map((py,index)=>
                 <tr>
                   
                 <td>
                   <a href="javascript:void(0)" className="text-primary-600">
-                    {index+1}
+                    {py.paymentId}
                   </a>
                 </td>
                 <td>
                   <a href="javascript:void(0)" className="text-primary-600">
-                    {index+101}
+                    {py._id}
                   </a>
                 </td>
                 <td>
                   <a href="javascript:void(0)" className="text-primary-600">
-                    {index+101}
+                    {py.paymentId}
                   </a>
                 </td>
                 <td>
                   <div className="d-flex align-items-center">
                     {/* <img src="assets/images/user-list/user-list1.png" alt className="flex-shrink-0 me-12 radius-8" /> */}
                     <h6 className="text-md mb-0 fw-medium flex-grow-1">
-                      {pr.na}
+                      {py.amount}
                     </h6>
                   </div>
                 </td>
                 <td>
                   <div className="d-flex align-items-center">
                     <h6 className="text-md mb-0 fw-medium flex-grow-1 text-wrap">
-                      {pr.email}
+                      {py.appointment_date}
                     </h6>
                   </div>
                 </td>
                 <td>
                   <div className="d-flex align-items-center">
                     <h6 className="text-md mb-0 fw-medium flex-grow-1">
-                      {pr.cono}
+                      {}
                     </h6>
                   </div>
                 </td>

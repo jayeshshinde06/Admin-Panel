@@ -1,80 +1,12 @@
 import Headder from "../Common/Headder";
 import Sidebar from "../Common/Sidebar";
 import Footer from "../Common/Footer";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 
 
-const doctordata = [{
-                id:1,
-                lid: 101,
-                na: "Jayesh",
-                cono: "989898989",
-                qual: "MBBS",
-              },
-              {
-                id: 2,
-                lid: 102,
-                na: "Amit",
-                cono: "9876543210",
-                qual: "MD",
-              },
-              {
-                id: 2,
-                lid: 102,
-                na: "Amit",
-                cono: "9876543210",
-                qual: "MD",
-              },
-              {
-                id: 2,
-                lid: 102,
-                na: "Amit",
-                cono: "9876543210",
-                qual: "MD",
-              },
-              {
-                id: 2,
-                lid: 102,
-                na: "Amit",
-                cono: "9876543210",
-                qual: "MD",
-              },
-              {
-                id: 2,
-                lid: 102,
-                na: "Amit",
-                cono: "9876543210",
-                qual: "MD",
-              },
-              {
-                id: 2,
-                lid: 102,
-                na: "Amit",
-                cono: "9876543210",
-                qual: "MD",
-              },
-              {
-                id: 2,
-                lid: 102,
-                na: "Amit",
-                cono: "9876543210",
-                qual: "MD",
-              },
-              {
-                id: 2,
-                lid: 102,
-                na: "Amit",
-                cono: "9876543210",
-                qual: "MD",
-              },
-              {
-                id: 2,
-                lid: 102,
-                na: "Amit",
-                cono: "9876543210",
-                qual: "MD",
-              }
-            ]
+
 export default function ManageAppointment(pro) {
   return (
     <>
@@ -118,6 +50,24 @@ function Content() {
   );
 }         
 function Content2() {
+
+   const [ appointment, setAppointment] = useState([]);
+
+  async function fetchAppointment() {
+    try {
+      const response = await axios.get("http://localhost:8000/getappointmentforadmin");
+      console.log(response.data.data);
+      setAppointment(response.data.data);
+      
+    } catch (error) {
+      console.log("ManageDoctor.js", error);
+      
+    }
+  }
+
+  useEffect(()=>{
+    fetchAppointment();
+},[])
   return (
     <>
       <div className="card basic-data-table">
@@ -142,32 +92,32 @@ function Content2() {
               </tr>
             </thead>
             <tbody>
-              {doctordata.map((pr,index)=>
-                <tr>
+              {appointment.map((ap,index)=>
+                <tr key={index}>
                   
                 <td>
-                  <a href="javascript:void(0)" className="text-primary-600">
-                    {index+1}
-                  </a>
+                  <p className="text-primary-600">
+                    {ap._id}
+                  </p>
                 </td>
                 <td>
-                  <a href="javascript:void(0)" className="text-primary-600">
-                    {index+101}
-                  </a>
+                  <p  className="text-primary-600">
+                    {ap.doc_id}
+                  </p>
                 </td>
                 <td>
-                  <div className="d-flex align-items-center">
+                  <div className="d-flex align-items-center ">
                     {/* <img src="assets/images/user-list/user-list1.png" alt className="flex-shrink-0 me-12 radius-8" /> */}
-                    <h6 className="text-md mb-0 fw-medium flex-grow-1">
-                      {pr.na}
-                    </h6>
+                    <p className=" text-primary-600">
+                      {ap.user_id}
+                    </p>
                   </div>
                 </td>
                 
                 <td>
                   <div className="d-flex align-items-center">
                     <h6 className="text-md mb-0 fw-medium flex-grow-1">
-                      {pr.cono}
+                      {ap.appointment_date}
                     </h6>
                   </div>
                 </td>

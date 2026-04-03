@@ -127,7 +127,7 @@ const {id} = useParams();
             <button
               type="button"
               onClick={handleAdd}
-              class="btn rounded-pill btn-primary-100 text-primary-600 radius-8 px-20 py-11"
+              className="btn rounded-pill btn-primary-100 text-primary-600 radius-8 px-20 py-11"
             >
               Add Area
             </button>

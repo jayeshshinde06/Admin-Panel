@@ -1,107 +1,10 @@
 import Headder from "../Common/Headder";
 import Sidebar from "../Common/Sidebar";
 import Footer from "../Common/Footer";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 
-
-const data = [{
-                id:1,
-                lid: 101,
-                na: "Jayesh",
-                email: "jay@gmail.com",
-                cono: "989898989",
-                qual: "MBBS",
-              },
-              {
-                id: 2,
-                lid: 102,
-                na: "Amit",
-                email: "amit@gmail.com",
-                cono: "9876543210",
-                qual: "MD",
-              },
-              {
-                id: 2,
-                lid: 102,
-                na: "Amit",
-                email: "amit@gmail.com",
-                cono: "9876543210",
-                qual: "MD",
-              },
-              {
-                id: 2,
-                lid: 102,
-                na: "Amit",
-                email: "amit@gmail.com",
-                cono: "9876543210",
-                qual: "MD",
-              },
-              {
-                id: 2,
-                lid: 102,
-                na: "Amit",
-                email: "amit@gmail.com",
-                cono: "9876543210",
-                qual: "MD",
-              },
-              {
-                id: 2,
-                lid: 102,
-                na: "Amit",
-                email: "amit@gmail.com",
-                cono: "9876543210",
-                qual: "MD",
-              },
-              {
-                id: 2,
-                lid: 102,
-                na: "Amit",
-                email: "amit@gmail.com",
-                cono: "9876543210",
-                qual: "MD",
-              },
-              {
-                id: 2,
-                lid: 102,
-                na: "Amit",
-                email: "amit@gmail.com",
-                cono: "9876543210",
-                qual: "MD",
-              },
-              {
-                id: 2,
-                lid: 102,
-                na: "Amit",
-                email: "amit@gmail.com",
-                cono: "9876543210",
-                qual: "MD",
-              },
-              {
-                id: 2,
-                lid: 102,
-                na: "Amit",
-                email: "amit@gmail.com",
-                cono: "9876543210",
-                qual: "MD",
-              }
-              ,
-              {
-                id: 2,
-                lid: 102,
-                na: "Amit",
-                email: "amit@gmail.com",
-                cono: "9876543210",
-                qual: "MD",
-              },
-              {
-                id: 2,
-                lid: 102,
-                na: "Amit",
-                email: "amit@gmail.com",
-                cono: "9876543210",
-                qual: "MD",
-              }
-            ]
 export default function ManageUser() {
   return (
     <>
@@ -117,6 +20,7 @@ export default function ManageUser() {
   );
 }
 function Content() {
+
   return (
     <>
       <div className="dashboard-main-body">
@@ -148,6 +52,23 @@ function Content() {
  
               
 function Content2() {
+  const [ user, setUser] = useState([]);
+
+  async function fetchUser() {
+    try {
+      const response = await axios.get("http://localhost:8000/getuserforadmin");
+      console.log(response.data.data);
+      setUser(response.data.data);
+      
+    } catch (error) {
+      console.log("ManageDoctor.js", error);
+      
+    }
+  }
+
+  useEffect(()=>{
+    fetchUser();
+},[])
   return (
     <>
       <div className="card basic-data-table">
@@ -164,7 +85,7 @@ function Content2() {
               <tr>
                     
                 <th scope="col">User Id</th>
-                <th scope="col">Location Id</th>
+                {/* <th scope="col">Location Id</th> */}
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Password</th>
@@ -174,43 +95,39 @@ function Content2() {
               </tr>
             </thead>
             <tbody>
-              {data.map((pr,index)=>
-                <tr>
+              {user.map((ur,index)=>
+                <tr key={index}>
                   
                 <td>
-                  <a href="javascript:void(0)" className="text-primary-600">
-                    {index+1}
+                  <a  className="text-primary-600">
+                    {ur._id}
                   </a>
                 </td>
+                
                 <td>
-                  <a href="javascript:void(0)" className="text-primary-600">
-                    {index+101}
-                  </a>
-                </td>
-                <td>
-                  <a href="javascript:void(0)" className="text-primary-600">
-                    {index+101}
+                  <a  className="fw-bold">
+                    {ur.fname}
                   </a>
                 </td>
                 <td>
                   <div className="d-flex align-items-center">
                     {/* <img src="assets/images/user-list/user-list1.png" alt className="flex-shrink-0 me-12 radius-8" /> */}
                     <h6 className="text-md mb-0 fw-medium flex-grow-1">
-                      {pr.na}
+                      {ur.email}
                     </h6>
                   </div>
                 </td>
                 <td>
                   <div className="d-flex align-items-center">
                     <h6 className="text-md mb-0 fw-medium flex-grow-1 text-wrap">
-                      {pr.email}
+                      {ur.password}
                     </h6>
                   </div>
                 </td>
                 <td>
                   <div className="d-flex align-items-center">
                     <h6 className="text-md mb-0 fw-medium flex-grow-1">
-                      {pr.cono}
+                      {ur.phone}
                     </h6>
                   </div>
                 </td>
@@ -218,7 +135,7 @@ function Content2() {
                 <td>
                   <div className="d-flex align-items-center">
                     <h6 className="text-md mb-0 fw-medium flex-grow-1">
-                      {pr.qual}
+                      {ur.address}
                     </h6>
                   </div>
                 </td>

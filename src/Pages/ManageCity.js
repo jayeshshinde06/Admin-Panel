@@ -173,12 +173,12 @@ function Content2() {
                     <button
                       type="button"
                       href="/viewcity"
-                      class="btn rounded-pill btn-outline-success-600 radius-8 px-20 py-11 d-flex align-items-center gap-2"
+                      className="btn rounded-pill btn-outline-success-600 radius-8 px-20 py-11 d-flex align-items-center gap-2"
                     >
                       <Link to={`/viewarea/${ct._id}`}> View Area </Link>
                       <iconify-icon
                         icon="mingcute:square-arrow-right-line"
-                        class="text-xl"
+                        className="text-xl"
                       ></iconify-icon>
                     </button>
                   </td>

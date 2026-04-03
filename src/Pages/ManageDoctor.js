@@ -2,89 +2,11 @@ import Headder from "../Common/Headder";
 import Sidebar from "../Common/Sidebar";
 import Footer from "../Common/Footer";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 
-const doctordata = [{
-                 
-                lid: 101,
-                na: "Jayesh",
-                email: "jay@gmail.com",
-                cono: "989898989",
-                qual: "MBBS",
-              },
-              {
-                 
-                lid: 102,
-                na: "Amit",
-                email: "amit@gmail.com",
-                cono: "9876543210",
-                qual: "MD",
-              },
-              {
-                 
-                lid: 102,
-                na: "Amit",
-                email: "amit@gmail.com",
-                cono: "9876543210",
-                qual: "MD",
-              },
-              {
-                 
-                lid: 102,
-                na: "Amit",
-                email: "amit@gmail.com",
-                cono: "9876543210",
-                qual: "MD",
-              },
-              {
-                 
-                lid: 102,
-                na: "Amit",
-                email: "amit@gmail.com",
-                cono: "9876543210",
-                qual: "MD",
-              },
-              {
-                 
-                lid: 102,
-                na: "Amit",
-                email: "amit@gmail.com",
-                cono: "9876543210",
-                qual: "MD",
-              },
-              {
-                 
-                lid: 102,
-                na: "Amit",
-                email: "amit@gmail.com",
-                cono: "9876543210",
-                qual: "MD",
-              },
-              {
-                 
-                lid: 102,
-                na: "Amit",
-                email: "amit@gmail.com",
-                cono: "9876543210",
-                qual: "MD",
-              },
-              {
-                 
-                lid: 102,
-                na: "Amit",
-                email: "amit@gmail.com",
-                cono: "9876543210",
-                qual: "MD",
-              },
-              {
-                 
-                lid: 102,
-                na: "Amit",
-                email: "amit@gmail.com",
-                cono: "9876543210",
-                qual: "MD",
-              }
-            ]
+
 export default function ManageDoctor(pro) {
   return (
     <>
@@ -128,6 +50,24 @@ function Content() {
   );
 }         
 function Content2() {
+
+  const [ doc, setDoc] = useState([]);
+
+  async function fetchDoctor() {
+    try {
+      const response = await axios.get("http://localhost:8000/getdocforadmin");
+      console.log(response.data.data);
+      setDoc(response.data.data);
+      
+    } catch (error) {
+      console.log("ManageDoctor.js", error);
+      
+    }
+  }
+
+  useEffect(()=>{
+    fetchDoctor();
+},[])
   return (
     <>
       <div className="card basic-data-table">
@@ -153,38 +93,38 @@ function Content2() {
               </tr>
             </thead>
             <tbody>
-              {doctordata.map((pr,index)=>
-                <tr>
+              {doc.map((dr,index)=>
+                <tr key={index}>
                
                 <td>
                   <a href="javascript:void(0)" className="text-primary-600">
-                    {index+1}
+                    {dr._id}
                   </a>
                 </td>
                 <td>
                   <a href="javascript:void(0)" className="text-primary-600">
-                    {index+101}
+                    {dr.area_id}
                   </a>
                 </td>
                 <td>
                   <div className="d-flex align-items-center">
                     {/* <img src="assets/images/user-list/user-list1.png" alt className="flex-shrink-0 me-12 radius-8" /> */}
                     <h6 className="text-md mb-0 fw-medium flex-grow-1">
-                      {pr.na}
+                      {dr.fname}
                     </h6>
                   </div>
                 </td>
                 <td>
                   <div className="d-flex align-items-center">
                     <h6 className="text-md mb-0 fw-medium flex-grow-1 text-wrap">
-                      {pr.email}
+                      {dr.email}
                     </h6>
                   </div>
                 </td>
                 <td>
                   <div className="d-flex align-items-center">
                     <h6 className="text-md mb-0 fw-medium flex-grow-1">
-                      {pr.cono}
+                      {dr.phone}
                     </h6>
                   </div>
                 </td>
@@ -192,13 +132,13 @@ function Content2() {
                 <td>
                   <div className="d-flex align-items-center">
                     <h6 className="text-md mb-0 fw-medium flex-grow-1">
-                      {pr.qual}
+                      {dr.specialization_name}
                     </h6>
                   </div>
                 </td>
                  <td>
                   <div className="d-flex align-items-center">
-                    <span class="bg-success-focus text-success-main px-24 py-4 rounded-pill fw-medium text-sm">Active</span>
+                    <span className="bg-success-focus text-success-main px-24 py-4 rounded-pill fw-medium text-sm">Active</span>
                   </div>
                 </td>
                 <td>
